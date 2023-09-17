@@ -1,0 +1,11 @@
+{
+  "name": "scraping",
+  "version": "1.0.0",
+  "description": "Fork the repository to make own copy\r This is a repository for our scraping assignment\r install python3\r create a virtual environment\r activate the virtual environment\r clone the github scraping repository into the virtual environment\r install python3 pip",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
