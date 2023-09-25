@@ -2,7 +2,7 @@ import requests
 import mysql.connector 
 from bs4 import BeautifulSoup
 
-req=requests.get('https://www.brightermonday.co.ug/')
+req=requests.get('https://github.com/')
 
 scrape= BeautifulSoup(req.content,"lxml")
 
