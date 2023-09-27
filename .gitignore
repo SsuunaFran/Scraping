@@ -1,1 +1,3 @@
 Myvenv/*
+node_modules/*
+userview/node_modules/*
