@@ -8,10 +8,10 @@ class Barchart extends Component{
         super()
         this.state={
             data: {
-                labels: ["SSUUNA", "CSS", "JAVASCRIPT", "CHART.JS", "JQUERY", "BOOTSTRP"],
+                labels: [],
                 datasets: [{
-                   label: "online tutorial subjects",
-                   data: [20, 40, 30, 35, 30, 20],
+                   label: "Jobs with Companies",
+                   data: [],
                    backgroundColor: ['yellow', 'aqua', 'pink', 'lightgreen', 'lightblue', 'gold'],
                    borderColor: ['red', 'blue', 'fuchsia', 'green', 'navy', 'black'],
                    borderWidth: 2,
@@ -23,7 +23,35 @@ class Barchart extends Component{
         }
     }
 
-    
+    componentDidMount(){
+        fetch('http://localhost:8080/bar').then((res)=>{
+            if(!res.ok){
+                console.log(`Error`)
+                return
+            }
+            return res.json()
+        }).then((data)=>{
+            console.log(data);
+            const CompanyNames=[];
+            const ComCOunt=[];
+            for(let i=0;i<data.length;i++){
+                CompanyNames.push(data[i].Company);
+                ComCOunt.push(data[i].CompanyCount);
+            }
+            this.setState({
+                data:{
+                    ...this.state.data,
+                    labels:CompanyNames,
+                    datasets:[{
+                        ...this.state.data.datasets[0],
+                        data:ComCOunt,
+                    }]
+                }
+            })
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
 
     render(){
         return(

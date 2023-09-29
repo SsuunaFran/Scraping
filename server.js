@@ -43,6 +43,9 @@ app.get('/bar',(req,res)=>{
                     console.log(`Encountered an error`);
                 }else{
                     res.status(200).json(results)
+                //     for (let i=0;i<results.length; i++){
+                //     console.log(results[i].Company);
+                // }
                 }
             })
         }

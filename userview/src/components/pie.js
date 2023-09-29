@@ -29,16 +29,16 @@ class piechart extends Component{
             }
             return res.json()
         }).then((data)=>{
-            const CompanyNames=[];
+            const LocationNames=[];
             const LocCount=[];
             for(let i=0;i<data.length;i++){
-                CompanyNames.push(data[i].Location);
+                LocationNames.push(data[i].Location);
                 LocCount.push(data[i].LocationCount);
             }
             this.setState({
                 data:{
                     ...this.state.data,
-                    labels:CompanyNames,
+                    labels:LocationNames,
                     datasets:[{
                         ...this.state.data.datasets[0],
                         data:LocCount,
