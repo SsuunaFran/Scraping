@@ -9,7 +9,7 @@ class piechart extends Component{
             data: {
                 labels: [],
                 datasets: [{
-                label: "Districts",
+                label: "Jobs",
                 data: [],
                 backgroundColor: ['yellow', 'aqua', 'pink', 'lightgreen', 'gold', 'lightblue'],
                 hoverOffset: 5
@@ -29,10 +29,22 @@ class piechart extends Component{
             }
             return res.json()
         }).then((data)=>{
+            const CompanyNames=[];
+            const LocCount=[];
             for(let i=0;i<data.length;i++){
-                const CompanyNames=[]
-                CompanyNames.push(data[i].Company);
+                CompanyNames.push(data[i].Location);
+                LocCount.push(data[i].LocationCount);
             }
+            this.setState({
+                data:{
+                    ...this.state.data,
+                    labels:CompanyNames,
+                    datasets:[{
+                        ...this.state.data.datasets[0],
+                        data:LocCount,
+                    }]
+                }
+            })
         }).catch((err)=>{
             console.log(err)
         })

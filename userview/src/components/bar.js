@@ -22,6 +22,9 @@ class Barchart extends Component{
              }
         }
     }
+
+    
+
     render(){
         return(
             <React.Fragment>

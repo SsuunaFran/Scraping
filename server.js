@@ -16,18 +16,35 @@ app.get('/get_data',(req,res)=>{
             console.log(`Got an error`);
         }else{
             console.log(`Connected Successfully`);
-            sql="select *from scrapper"
+            sql="SELECT Location, COUNT(*) AS LocationCount FROM scrapper GROUP BY Location;"
         conn.query(sql,(err,results)=>{
             if(err){
                 console.log("Encountered an error")
             }else{
                 res.status(200).json(results)
-                // for (i=0;i<results.length; i++){
+                // for (let i=0;i<results.length; i++){
                 //     console.log(results[i]);
                     
                 // }
             }
         })
+        }
+    })
+})
+app.get('/bar',(req,res)=>{
+    conn.connect((err)=>{
+        if(err){
+            console.log(`Got an error`);
+        }else{
+            console.log(`Connected Successfully`);
+            sql="SELECT Company, COUNT(*) AS CompanyCount FROM scrapper GROUP BY Company"
+            conn.query(sql,(err,results)=>{
+                if(err){
+                    console.log(`Encountered an error`);
+                }else{
+                    res.status(200).json(results)
+                }
+            })
         }
     })
 })
