@@ -7,10 +7,10 @@ class piechart extends Component{
         super()
         this.state={
             data: {
-                labels: ["HTML", "CSS", "JAVASCRIPT", "CHART.JS", "JQUERY", "BOOTSTRP"],
+                labels: [],
                 datasets: [{
-                label: "online tutorial subjects",
-                data: [20, 40, 13, 35, 20, 38],
+                label: "Districts",
+                data: [],
                 backgroundColor: ['yellow', 'aqua', 'pink', 'lightgreen', 'gold', 'lightblue'],
                 hoverOffset: 5
                 }],
@@ -20,6 +20,25 @@ class piechart extends Component{
             },
         }
     }
+
+    componentDidMount(){
+        fetch('http://localhost:8080/get_data').then((res)=>{
+            if(!res.ok){
+                console.log(`Error`)
+                return
+            }
+            return res.json()
+        }).then((data)=>{
+            for(let i=0;i<data.length;i++){
+                const CompanyNames=[]
+                CompanyNames.push(data[i].Company);
+            }
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }    
+        
+
     render(){
         return(
             <React.Fragment>

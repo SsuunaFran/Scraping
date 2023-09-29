@@ -1,6 +1,7 @@
 const express=require("express");
 const mysql=require("mysql2");
 const app=express();
+const cors=require("cors");
 const conn=mysql.createConnection({
     host:"localhost",
     user:"root",
@@ -8,6 +9,7 @@ const conn=mysql.createConnection({
     database:"Scraping"
 })
 
+app.use(cors());
 app.get('/get_data',(req,res)=>{
     conn.connect((err)=>{
         if(err){
@@ -19,10 +21,11 @@ app.get('/get_data',(req,res)=>{
             if(err){
                 console.log("Encountered an error")
             }else{
-                for (i=0;i<results.length; i++){
-                    console.log(results[i]);
+                res.status(200).json(results)
+                // for (i=0;i<results.length; i++){
+                //     console.log(results[i]);
                     
-                }
+                // }
             }
         })
         }

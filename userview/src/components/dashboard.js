@@ -4,6 +4,10 @@ import Piechart from './pie';
 import './mystyles.css';
 import Barchart from './bar';
 class Dashboard extends Component{
+constructor(){
+    super()
+}
+
     render(){
         return(
             <React.Fragment>
