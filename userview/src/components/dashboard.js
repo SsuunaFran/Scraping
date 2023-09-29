@@ -16,7 +16,7 @@ constructor(){
                         <div className='col-4'>
                             <div className='card'>
                                 <div className='card-header'>
-                                <span className='card-title text-primary fw-bold'>Pie Chart</span>
+                                <span className='card-title text-primary fw-bold'>District Percentages</span>
                                 </div>
                                 <div className="card-body">
                                     <Piechart/>
@@ -29,7 +29,7 @@ constructor(){
                         <div className='col-7 m-1'>
                             <div className='card'>
                                 <div className='card-header border border-1'>
-                                    <span className='text-primary fw-bold'>Bar Graph</span>
+                                    <span className='text-primary fw-bold'>Number of Jobs in line with Companies</span>
                                 </div>
                                 <div className='card-body'>
                                     <Barchart/>
