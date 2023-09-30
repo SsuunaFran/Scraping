@@ -1,10 +1,11 @@
 import React,{Component} from "react";
-import {Pie} from "react-chartjs-2";
+import {Pie,getElementAtEvent} from "react-chartjs-2";
 import Chart from 'chart.js/auto';
 
 class piechart extends Component{
     constructor(){
         super()
+        this.pieRef=React.createRef();
         this.state={
             data: {
                 labels: [],
@@ -49,12 +50,27 @@ class piechart extends Component{
             console.log(err)
         })
     }    
-        
+       
+    showModal=(e)=>{
+        // console.log("Clicked");
+        // console.log(this.pieRef.current);
+        console.log(getElementAtEvent(this.pieRef.current, e));
+        const element=(getElementAtEvent(this.pieRef.current, e))[0].index;
+        const length=(getElementAtEvent(this.pieRef.current, e)).length;
+        console.log(element);
+        console.log(length);
+
+    }
 
     render(){
         return(
             <React.Fragment>
-                <Pie data={this.state.data} options={this.state.options}></Pie>
+                <Pie 
+                data={this.state.data} 
+                options={this.state.options} 
+                onClick={this.showModal}
+                ref={this.pieRef}
+                ></Pie>
             </React.Fragment>
         )
     }
