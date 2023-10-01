@@ -54,12 +54,33 @@ class piechart extends Component{
     showModal=(e)=>{
         // console.log("Clicked");
         // console.log(this.pieRef.current);
-        console.log(getElementAtEvent(this.pieRef.current, e));
-        const element=(getElementAtEvent(this.pieRef.current, e))[0].index;
+        // console.log(getElementAtEvent(this.pieRef.current, e));
         const length=(getElementAtEvent(this.pieRef.current, e)).length;
-        console.log(element);
-        console.log(length);
-
+        if(length>0){
+            const element=(getElementAtEvent(this.pieRef.current, e))[0].index;
+            const location=(this.state.data.labels[element]);
+            const sendData={
+                location:location,
+                id:element
+            }
+            console.log(this.state.data.labels[element]);
+            fetch(`http://localhost:8080/piepopup`,{
+                    method:'POST',
+                    headers:{
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body:new URLSearchParams(sendData).toString()
+            }).then((response)=>{
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.status}`);
+                  }
+                  return response.json(); // Parse the response JSON if applicable
+            }).then((data)=>{
+                console.log(data);
+            })
+        }else{
+            console.log(`You clicked outside the pie`);
+        }
     }
 
     render(){
