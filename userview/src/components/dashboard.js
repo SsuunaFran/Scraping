@@ -1,17 +1,33 @@
-import React,{Component} from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import React,{Component} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Piechart from './pie';
 import './mystyles.css';
 import Barchart from './bar';
-class Dashboard extends Component{
-constructor(){
-    super()
-}
+import MyModal from './modal';
 
+class Dashboard extends Component{
+    constructor(props) {
+      super(props)
+    
+      this.state = {
+        try:"SSSSSSSSSS",
+         DataFromPie:{}
+      }
+    }
+
+    recieveData=(data)=>{
+        this.setState({
+            DataFromPie:data
+        },()=>{
+            // console.log(`Data from pie ${this.state.DataFromPie}`)
+        })
+    }
+    
     render(){
         return(
             <React.Fragment>
                 <div className='container-fluid border border-1 border-primary'>
+                    <MyModal dataFromParent={this.state.DataFromPie}/>
                     <div className='row container-fluid m-5'>
                         <div className='col-4'>
                             <div className='card'>
@@ -19,7 +35,7 @@ constructor(){
                                 <span className='card-title text-primary fw-bold'>District Percentages</span>
                                 </div>
                                 <div className="card-body">
-                                    <Piechart/>
+                                    <Piechart get_childData={this.recieveData}/>
                                 </div>
                                 <div className='card-footer'>
                                     <span className='text-primary'> Districts</span>
