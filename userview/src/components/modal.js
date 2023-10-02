@@ -9,7 +9,7 @@ class MyModal extends Component {
     this.state = {
       modal: false,
       DataToreflect:{}
-    };
+    }
   }
 
   toggle = () => {
@@ -23,6 +23,7 @@ class MyModal extends Component {
       this.setState({
         DataToreflect:this.props.dataFromParent
       },()=>{
+        this.toggle()
         // console.log(`pooo${this.state.DataToreflect}`)
       })
     }
@@ -40,9 +41,6 @@ class MyModal extends Component {
             <Table showData={this.state.DataToreflect}></Table>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>
-              Do Something
-            </Button>{' '}
             <Button color="secondary" onClick={this.toggle}>
               Cancel
             </Button>
