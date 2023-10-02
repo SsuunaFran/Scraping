@@ -32,9 +32,6 @@ class MyModal extends Component {
   render() {
     return (
       <div>
-        <Button color="danger" onClick={this.toggle}>
-          Click Me
-        </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-xl">
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
