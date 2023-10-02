@@ -6,17 +6,22 @@ export class Table extends Component {
     super(props)
   
     this.state = {
-       data:{}
+       data:[],
+       Location:""
     }
   }
   
-  componentDidUpdate(){
+  componentDidMount(){
     if(this.state.data !== this.props.showData){
       console.log(`ggggggggggggggggg`)
       this.setState({
         data:this.props.showData
       },()=>{
-        console.log(`table ${this.state.data}`)
+        const{data}=this.state;
+        console.log(`table ${data[0].Location}`)
+        this.setState({
+          Location:data[0].Location
+        })
       })
     }
   }
@@ -25,7 +30,7 @@ export class Table extends Component {
     return (
       <div className='container container-fluid'>
         <div className='card w-l'>
-            <div className='card-header text-primary fw-bold text-center'>JOBS IN ARUA</div>
+            <div className='card-header text-primary fw-bold text-center'>JOBS IN {this.state.Location}</div>
             <div className='card-body'>
                 <label>
                     Search :
@@ -46,36 +51,18 @@ export class Table extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@mdo</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">3</th>
-                        <td>Larry the Bird</td>
-                        <td>SSUUNA</td>
-                        <td>@twitter</td>
-                        <td>Larry the Bird</td>
-                        <td>SSUUNA</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        </tr>
+                        {(this.state.data).map((item,index)=>(
+                          <tr key={index}>
+                            <th scope="row">{index+1}</th>
+                            <td>{item.JobTitle}</td>
+                            <td>{item.Company}</td>
+                            <td>{item.DatePosted}</td>
+                            <td>{item.DateAgo}</td>
+                            <td>{item.Location}</td>
+                            <td>{item.JobType}</td>
+                            <td>{item.Company}</td>
+                          </tr>
+                        ))}                                        
                     </tbody>
                 </table>
             </div>
