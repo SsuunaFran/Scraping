@@ -15,13 +15,13 @@ app.use(cors());
 app.get('/get_data',(req,res)=>{
     conn.connect((err)=>{
         if(err){
-            console.log(`Got an error`);
+            console.log(`Error ${err}`);
         }else{
             console.log(`Connected Successfully`);
             sql="SELECT Location, COUNT(*) AS LocationCount FROM scrapper GROUP BY Location;"
         conn.query(sql,(err,results)=>{
             if(err){
-                console.log("Encountered an error")
+                console.log(`Encountered an error called ${err}`)
             }else{
                 res.status(200).json(results)
                 // for (let i=0;i<results.length; i++){

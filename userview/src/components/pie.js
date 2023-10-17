@@ -19,8 +19,7 @@ class piechart extends Component{
             options: {
                 responsive: true,
             },
-            ChildData:{},
-            activate:"FRANCIS"
+            ChildData:{}
         }
     }
 
@@ -32,6 +31,7 @@ class piechart extends Component{
             }
             return res.json()
         }).then((data)=>{
+            // console.log(data);
             const LocationNames=[];
             const LocCount=[];
             for(let i=0;i<data.length;i++){
@@ -52,7 +52,7 @@ class piechart extends Component{
             console.log(err)
         })
     }    
-       
+ 
     showModal=(e)=>{
         // console.log("Clicked");
         // console.log(this.pieRef.current);
@@ -90,7 +90,6 @@ class piechart extends Component{
                     //     }]
                     // },
                     ChildData:data,
-                    activate:"SSUUNA",
                 },()=>{
                     // console.log("return func")
                     // console.log(this.state.data.datasets[0].la // console.log(this.state.activate)
@@ -109,7 +108,7 @@ class piechart extends Component{
         return(
             <React.Fragment>
                 <Pie 
-                data={this.state.data} 
+                data={this.state.data}
                 options={this.state.options} 
                 onClick={this.showModal}
                 ref={this.pieRef}
